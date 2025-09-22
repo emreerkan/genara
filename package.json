@@ -1,0 +1,52 @@
+{
+  "name": "jenerator",
+  "version": "1.0.0",
+  "description": "A Number Validation & Generation Tool",
+  "main": "dist/cli/index.js",
+  "bin": {
+    "jenerator": "dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/cli/index.js",
+    "dev": "ts-node src/cli/index.ts",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "keywords": [
+    "tckn",
+    "vkn", 
+    "iban",
+    "credit-card",
+    "isbn",
+    "ean",
+    "upc",
+    "imei",
+    "validation",
+    "generator",
+    "turkish",
+    "identification",
+    "turkey"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
