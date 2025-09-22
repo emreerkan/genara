@@ -1,6 +1,6 @@
 {
   "name": "genara",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Number Validation & Generation Tool for Turkish and International Standards",
   "homepage": "https://github.com/emreerkan/genara#readme",
   "repository": {
@@ -10,26 +10,26 @@
   "bugs": {
     "url": "https://github.com/emreerkan/genara/issues"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "bin": {
-    "genara": "dist/cli/index.js"
+    "genara": "dist/src/cli/index.js"
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/src/index.js",
+      "require": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
     },
     "./services/*": {
-      "import": "./dist/services/*/index.js",
-      "require": "./dist/services/*/index.js",
-      "types": "./dist/services/*/index.d.ts"
+      "import": "./dist/src/services/*/index.js",
+      "require": "./dist/src/services/*/index.js",
+      "types": "./dist/src/services/*/index.d.ts"
     }
   },
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node dist/cli/index.js",
+    "start": "npm run build && node dist/src/cli/index.js",
     "dev": "ts-node src/cli/index.ts",
     "test": "jest",
     "test:watch": "jest --watch",
