@@ -70,26 +70,19 @@ jobs:
         if: env.NODE_AUTH_TOKEN != ''
         run: npm publish --access public
 
-      - name: Create GitHub release
-        id: create_release
-        uses: actions/create-release@v1
+      - name: Prepare release artifact
+        run: |
+          mkdir -p release-artifacts
+          npm pack --pack-destination ./release-artifacts
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.release_meta.outputs.tag }}
-          release_name: Genara v${{ steps.release_meta.outputs.version }}
+          name: Genara v${{ steps.release_meta.outputs.version }}
           draft: false
           prerelease: false
-
-      - name: Upload release artifact
-        run: |
-          TARBALL=$(npm pack --pack-destination ./release-artifacts)
-          echo "tarball=$TARBALL" >> "$GITHUB_OUTPUT"
-        id: package_artifact
-
-      - name: Attach npm package tarball
-        if: steps.package_artifact.outputs.tarball
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release-artifacts/${{ steps.package_artifact.outputs.tarball }}
-          asset_name: ${{ steps.package_artifact.outputs.tarball }}
-          asset_content_type: application/gzip
+          generate_release_notes: true
+          files: release-artifacts/*.tgz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
