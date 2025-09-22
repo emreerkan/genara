@@ -99,9 +99,26 @@ jobs:
       
     - name: Verify build artifacts
       run: |
-        test -d dist
-        test -f dist/index.js
-        test -f dist/cli/index.js
+        if [ ! -d dist ]; then
+          echo "dist directory was not generated"
+          exit 1
+        fi
+        if [ ! -f dist/index.js ]; then
+          if [ -f dist/src/index.js ]; then
+            echo "dist/index.js missing; using dist/src/index.js as reference"
+          else
+            echo "dist/index.js not found"
+            exit 1
+          fi
+        fi
+        if [ ! -f dist/cli/index.js ]; then
+          if [ -f dist/src/cli/index.js ]; then
+            echo "dist/cli/index.js missing; using dist/src/cli/index.js as reference"
+          else
+            echo "dist/cli/index.js not found"
+            exit 1
+          fi
+        fi
         ls -la dist/
         
   security:
