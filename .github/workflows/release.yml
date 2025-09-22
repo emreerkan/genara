@@ -78,7 +78,6 @@ jobs:
           release_name: Genara v${{ steps.release_meta.outputs.version }}
           draft: false
           prerelease: false
-          generate_release_notes: true
 
       - name: Upload release artifact
         run: |
