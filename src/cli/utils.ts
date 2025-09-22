@@ -17,10 +17,10 @@ export interface CliArgs {
  * Displays usage information
  */
 export function showUsage(): void {
-  console.log('Jenerator - A Number Validation & Generation Tool');
+  console.log('Genara - A Number Validation & Generation Tool');
   console.log('');
   console.log('Kullanım:');
-  console.log('  jenerator [options] [input]');
+  console.log('  genara [options] [input]');
   console.log('');
   console.log('Seçenekler:');
   console.log('  --help, -h              Bu yardım mesajını gösterit');
@@ -30,12 +30,12 @@ export function showUsage(): void {
   console.log('  --count, -c <number>    Belirtilen sayıda üretir (Varsayılan: 1)');
   console.log('');
   console.log('Örnekler:');
-  console.log('  jenerator tckn                           # TCKN üret');
-  console.log('  jenerator vkn 5                          # 5 adet VKN üret');
-  console.log('  jenerator -s creditcard -c 2             # 2 adet kredi kartı üret');
-  console.log('  jenerator 12345678901                    # Otomatik algıla ve doğrula');
-  console.log('  jenerator TR320010009999901234567890     # IBAN doğrula');
-  console.log('  jenerator -s tckn 123456789              # TCKN tamamla');
+  console.log('  genara tckn                           # TCKN üret');
+  console.log('  genara vkn 5                          # 5 adet VKN üret');
+  console.log('  genara -s creditcard -c 2             # 2 adet kredi kartı üret');
+  console.log('  genara 12345678901                    # Otomatik algıla ve doğrula');
+  console.log('  genara TR320010009999901234567890     # IBAN doğrula');
+  console.log('  genara -s tckn 123456789              # TCKN tamamla');
   console.log('');
   console.log('Desteklenen Servisler: tckn, vkn, iban, creditcard, imei, isbn, ean');
 }
@@ -44,7 +44,7 @@ export function showUsage(): void {
  * Displays version information
  */
 export function showVersion(): void {
-  console.log('jenerator v1.0.0');
+  console.log('genara v1.0.0');
 }
 
 /**

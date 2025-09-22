@@ -106,7 +106,6 @@ export class ServiceFactory {
     if (/^[\dX]+$/.test(cleanInput)) {
       if (cleanInput.length === 10) {
         possibleServices.push(ServiceType.ISBN); // ISBN-10
-        possibleServices.push(ServiceType.VKN);  // Both possible for 10 digits
       } else if (cleanInput.length === 13) {
         if (cleanInput.startsWith('978') || cleanInput.startsWith('979')) {
           possibleServices.push(ServiceType.ISBN); // ISBN-13

@@ -203,14 +203,15 @@ export class IsbnService implements NumberService {
     const needed = 9 - partial.length;
     if (needed <= 0) {
       // Just add check digit
+      const padded = partial.padEnd(9, '0');
       let sum = 0;
       for (let i = 0; i < 9; i++) {
-        sum += (10 - i) * parseInt(partial[i] || '0', 10);
+        sum += (10 - i) * parseInt(padded[i], 10);
       }
       const checkDigit = this.calculateIsbn10CheckDigit(sum);
-      return this.formatIsbn10(partial.padEnd(9, '0') + checkDigit);
+      return this.formatIsbn10(padded + checkDigit);
     }
-    
+
     const completion = this.generateRandomDigits(needed);
     const isbn9 = partial + completion;
     

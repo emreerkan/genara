@@ -1,4 +1,4 @@
-# Copilot Instructions for Jenerator Project
+# Copilot Instructions for Genara Project
 
 ## Development Guidelines
 

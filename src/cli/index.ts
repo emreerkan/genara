@@ -7,7 +7,7 @@ import { showUsage, showVersion, displayResult, displayGenerated, displayError, 
 /**
  * Main CLI application
  */
-class JeneratorCLI {
+class GenaraCLI {
   private args: string[];
 
   constructor() {
@@ -273,11 +273,11 @@ class JeneratorCLI {
  * Entry point
  */
 if (require.main === module) {
-  const cli = new JeneratorCLI();
+  const cli = new GenaraCLI();
   cli.run().catch((error) => {
     displayError(error instanceof Error ? error.message : 'Bilinmeyen hata');
     process.exit(1);
   });
 }
 
-export { JeneratorCLI };
+export { GenaraCLI };

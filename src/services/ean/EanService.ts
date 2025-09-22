@@ -181,10 +181,14 @@ export class EanService implements NumberService {
     
     if (cleaned.length >= 3 && cleaned.length < 7) {
       return this.completeAsEan8(cleaned);
-    } else if (cleaned.length >= 7 && cleaned.length < 12) {
-      return this.completeAsEan13(cleaned);
-    } else if (cleaned.length >= 3 && cleaned.length < 12) {
+    }
+
+    if (cleaned.length === 11) {
       return this.completeAsUpcA(cleaned);
+    }
+
+    if (cleaned.length >= 7 && cleaned.length < 13) {
+      return this.completeAsEan13(cleaned);
     }
     
     throw new Error('Girilen kısmi EAN/UPC numarası tamamlanamıyor');
