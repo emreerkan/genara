@@ -22,10 +22,10 @@ Modern TypeScript tabanlı Türk kimlik numaraları ve uluslararası standartlar
 
 Bu proje %100 test kapsamı ile kapsamlı bir test süitine sahiptir:
 
-- **440 test** 8 farklı test dosyasında
-- **Otomatik CI/CD** GitHub Actions ile
-- **Kod kalitesi** kontrolü ve güvenlik denetimi
-- **Kapsamlı algoritma testleri** her servis için
+- 8 farklı test dosyasında **440 test**
+- GitHub Actions ile **Otomatik CI/CD**
+- **Kod kalitesi kontrolü ve güvenlik denetimi**
+- Her servis için **kapsamlı algoritma testleri**
 
 ## 📦 Kurulum
 
@@ -77,7 +77,7 @@ const service = ServiceFactory.getService('tckn');
 const completed = service.complete('123456789');
 ```
 
-## 📖 API Dokümantasyonu
+## 📖 API Belgeleri
 
 ### Temel Arayüz
 
@@ -108,14 +108,8 @@ service.validate('12345678950');        // boolean
 service.generate();                     // string (11 haneli)
 
 // Tamamlama
-service.complete('123456789');          // 9 haneli prefix'ten tam TCKN
+service.complete('123456789');          // 9 haneli halinden tam TCKN üretir
 ```
-
-**Algoritma Kuralları:**
-- 11 haneli olmalı
-- İlk hane 0 olamaz
-- Tekrarlayan diziler geçersiz (11111111110, vb.)
-- Özel matematik formülü ile doğrulama
 
 #### 🇹🇷 VKN (Vergi Kimlik Numarası)
 ```typescript
@@ -124,7 +118,7 @@ import { VknService } from 'genara';
 const service = new VknService();
 service.validate('1234567890');         // boolean
 service.generate();                     // string (10 haneli)
-service.complete('123456789');          // 9 haneli prefix'ten tam VKN
+service.complete('123456789');          // 9 haneli halinden tam VKN üretir
 ```
 
 #### 🏦 IBAN (International Bank Account Number)
@@ -142,10 +136,10 @@ service.complete('TR55');               // Kısmi IBAN'ı tamamla
 import { CreditCardService } from 'genara';
 
 const service = new CreditCardService();
-service.validate('4532 0151 1283 0366');               // boolean (Luhn algoritması)
-service.generate();                                     // Rastgele geçerli kart
-service.generateWithOptions({ cardType: 'visa' });     // Belirli kart türü
-service.complete('4532');                               // Visa prefix'ini tamamla
+service.validate('4532 0151 1283 0366');             // boolean (Luhn algoritması)
+service.generate();                                  // Rastgele geçerli kart üretir
+service.generateWithOptions({ cardType: 'visa' });   // Belirli kart türü
+service.complete('4532');                            // Visa prefix'ini tamamla
 
 // Desteklenen kart türleri
 const types = ['visa', 'mastercard', 'amex', 'discover', 'jcb', 'diners'];
@@ -157,8 +151,8 @@ import { ImeiService } from 'genara';
 
 const service = new ImeiService();
 service.validate('12 345678 901234 5');    // boolean (Luhn + TAC kontrolü)
-service.generate();                         // Gerçek TAC kodlu IMEI
-service.complete('123456');                 // TAC prefix'ini tamamla
+service.generate();                        // Gerçek TAC kodlu IMEI
+service.complete('123456');                // TAC prefix'ini tamamla
 ```
 
 #### 📚 ISBN (International Standard Book Number)
@@ -166,10 +160,10 @@ service.complete('123456');                 // TAC prefix'ini tamamla
 import { IsbnService } from 'genara';
 
 const service = new IsbnService();
-service.validate('978-3-16-148410-0');      // ISBN-13
-service.validate('0-306-40615-2');          // ISBN-10
-service.generate();                         // ISBN-10 veya ISBN-13
-service.complete('978-3-16');               // Kısmi ISBN'i tamamla
+service.validate('978-3-16-148410-0'); // ISBN-13
+service.validate('0-306-40615-2');     // ISBN-10
+service.generate();                    // ISBN-10 veya ISBN-13
+service.complete('978-3-16');          // Kısmi ISBN'i tamamla (rastgele üretir)
 ```
 
 #### 🏷️ EAN/UPC (European/Universal Product Code)
@@ -177,11 +171,11 @@ service.complete('978-3-16');               // Kısmi ISBN'i tamamla
 import { EanService } from 'genara';
 
 const service = new EanService();
-service.validate('1 234567 890123');        // EAN-13
-service.validate('12345670');               // EAN-8
-service.validate('036000291452');           // UPC-A
-service.generate();                         // EAN-13/EAN-8/UPC-A
-service.complete('123456');                 // Kısmi kodu tamamla
+service.validate('1 234567 890123');     // EAN-13
+service.validate('12345670');            // EAN-8
+service.validate('036000291452');        // UPC-A
+service.generate();                      // EAN-13/EAN-8/UPC-A
+service.complete('123456');              // Kısmi kodu tamamla (rastgele üretir)
 ```
 
 ### ServiceFactory
@@ -221,10 +215,10 @@ npm run test:watch          # İzleme modunda
 ```
 
 **Mevcut Test Durumu:**
-- ✅ **440 test** toplamda
-- ✅ **100%** statement coverage
-- ✅ **100%** branch coverage
-- ✅ **100%** function coverage
+- ✅ **440 adet** test
+- ✅ **100%** ifade kapsama
+- ✅ **100%** dal kapsama
+- ✅ **100%** fonksiyon kapsama
 
 ### Kod Kalitesi
 ```bash
@@ -276,30 +270,40 @@ genara -s tckn -a complete 123456789  # TCKN olarak tamamla
 ### Gelişmiş Özellikler
 ```bash
 # Çoklu üretim
-genara creditcard -c 3          # 3 kredi kartı
-genara isbn --count 10          # 10 ISBN
+genara creditcard -c 3          # 3 kredi kartı üretir
+genara isbn --count 10          # 10 ISBN üretir
+```
 
 ## 🏗️ Proje Mimarisi
 
 ### Dizin Yapısı
 ```
 src/
-├── interfaces/              # TypeScript interfaces
-│   ├── NumberService.ts     # Ana servis interface'i
-│   └── ServiceTypes.ts      # Servis türleri ve takma adları
-├── services/               # Servis implementasyonları
-│   ├── tckn/              # TCKN servisi
-│   ├── vkn/               # VKN servisi
-│   ├── iban/              # IBAN servisi
-│   ├── creditcard/        # Kredi kartı servisi
-│   ├── imei/              # IMEI servisi
-│   ├── isbn/              # ISBN servisi
-│   └── ean/               # EAN/UPC servisi
-├── factory/               # Factory pattern
+├── interfaces/                # TypeScript interfaces
+│   ├── NumberService.ts       # Ana servis interface'i
+│   └── ServiceTypes.ts        # Servis türleri ve takma adları
+├── services/                  # Servis implementasyonları
+│   ├── tckn/                  # TCKN servisi
+│   ├── vkn/                   # VKN servisi
+│   ├── iban/                  # IBAN servisi
+│   ├── creditcard/            # Kredi kartı servisi
+│   ├── imei/                  # IMEI servisi
+│   ├── isbn/                  # ISBN servisi
+│   └── ean/                   # EAN/UPC servisi
+├── factory/                   # Factory pattern
 │   └── ServiceFactory.ts
-├── cli/                   # Komut satırı arayüzü
+├── cli/                       # Komut satırı arayüzü
 │   └── index.ts
-└── index.ts               # Ana kütüphane export'u
+└── index.ts                   # Ana kütüphane export'u
+tests/
+├── CreditCardService.test.ts  # Kredi kartı testleri
+├── EanService.test.ts         # EAN/UPC testleri
+├── IbanService.test.ts        # IBAN testleri
+├── ImeiService.test.ts        # IMEI testleri
+├── IsbnService.test.ts        # ISBN testleri
+├── ServiceFactory.test.ts     # Factory testleri
+├── TcknService.test.ts        # TCKN testleri
+└── VknService.test.ts         # VKN testleri
 ```
 
 ### Tasarım Desenleri
@@ -343,15 +347,15 @@ Detaylı rehber için [CONTRIBUTING.md](./CONTRIBUTING.md) dosyasına bakın.
 ## 📊 Performance & Benchmarks
 
 ### Test Performansı
-- **TCKN Doğrulama**: ~0.001ms per operation
-- **Kredi Kartı Üretimi**: ~0.002ms per operation  
-- **IBAN Doğrulaması**: ~0.003ms per operation
+- **TCKN Doğrulama**: işlem başına ~0.001ms 
+- **Kredi Kartı Üretimi**: işlem başına ~0.002ms
+- **IBAN Doğrulaması**: işlem başına ~0.003ms
 - **Toplu İşlemler**: 10,000 işlem <100ms
 
 ### Bellek Kullanımı
-- Minimum heap: ~15MB
-- Service instance'ları singleton pattern ile optimize edilmiş
-- Zero external dependencies production'da
+- En düşük heap: ~15MB
+- Servis örnekleri singleton modeli ile optimize edilmiş
+- Canlı ortamda sıfır bağımlılık
 
 ## 🤝 Katkıda Bulunma
 
