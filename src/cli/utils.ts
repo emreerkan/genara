@@ -23,36 +23,21 @@ export function showUsage(): void {
   console.log('  jenerator [options] [input]');
   console.log('');
   console.log('Seçenekler:');
-  console.log('  --help, -h              Bu yardım mesajını göster');
-  console.log('  --version, -v           Versiyon bilgisini göster');
-  console.log('  --service, -s <service> Belirtilen servisi kullan (tckn, vkn, iban, creditcard, imei, isbn)');
+  console.log('  --help, -h              Bu yardım mesajını gösterit');
+  console.log('  --version, -v           Versiyon bilgisini gösterit');
+  console.log('  --service, -s <service> Belirtilen servisi kullanır (tckn, vkn, iban, creditcard, imei, isbn, ean)');
   console.log('  --action, -a <action>   Yapılacak işlem (generate, validate, complete)');
-  console.log('  --count, -c <number>    Belirtilen sayıda üret (varsayılan: 1)');
+  console.log('  --count, -c <number>    Belirtilen sayıda üretir (Varsayılan: 1)');
   console.log('');
   console.log('Örnekler:');
-  console.log('  jenerator tckn                           # TCKN üret (kısa format)');
-  console.log('  jenerator vkn 5                          # 5 adet VKN üret (kısa format)');
-  console.log('  jenerator iban                           # IBAN üret (kısa format)');
-  console.log('  jenerator creditcard                     # Kredi kartı üret (kısa format)');
-  console.log('  jenerator imei                           # IMEI üret (kısa format)');
-  console.log('  jenerator isbn                           # ISBN üret (kısa format)');
-  console.log('  jenerator -s tckn                        # TCKN üret (uzun format)');
-  console.log('  jenerator -s vkn -c 3                    # 3 adet VKN üret (uzun format)');
-  console.log('  jenerator -s creditcard -c 2             # 2 adet kredi kartı üret (uzun format)');
-  console.log('  jenerator -s imei -c 3                   # 3 adet IMEI üret (uzun format)');
-  console.log('  jenerator -s isbn -c 2                   # 2 adet ISBN üret (uzun format)');
+  console.log('  jenerator tckn                           # TCKN üret');
+  console.log('  jenerator vkn 5                          # 5 adet VKN üret');
+  console.log('  jenerator -s creditcard -c 2             # 2 adet kredi kartı üret');
   console.log('  jenerator 12345678901                    # Otomatik algıla ve doğrula');
   console.log('  jenerator TR320010009999901234567890     # IBAN doğrula');
-  console.log('  jenerator 4111111111111111               # Kredi kartı doğrula');
-  console.log('  jenerator 123456789012345               # IMEI doğrula');
-  console.log('  jenerator 9780201896831                  # ISBN doğrula');
-  console.log('  jenerator -s tckn 123456789              # TCKN olarak tamamla (otomatik: complete)');
-  console.log('  jenerator -s creditcard 4111             # Kredi kartı tamamla (otomatik: complete)');
-  console.log('  jenerator -s imei 01215200               # IMEI tamamla (otomatik: complete)');
-  console.log('  jenerator -s isbn 978349                 # ISBN tamamla (otomatik: complete)');
-  console.log('  jenerator -a generate -s iban            # Açık format: IBAN üret');
+  console.log('  jenerator -s tckn 123456789              # TCKN tamamla');
   console.log('');
-  console.log('Desteklenen Servisler: tckn, vkn, iban, creditcard, imei, isbn');
+  console.log('Desteklenen Servisler: tckn, vkn, iban, creditcard, imei, isbn, ean');
 }
 
 /**
@@ -83,7 +68,7 @@ export function getDisplayServiceName(serviceType: string): string {
     'tckn': 'TCKN',
     'vkn': 'VKN', 
     'iban': 'IBAN',
-    'creditcard': 'Credit Card',
+    'creditcard': 'Kredi Kartı',
     'imei': 'IMEI',
     'isbn': 'ISBN',
     'ean': 'EAN'

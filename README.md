@@ -10,7 +10,7 @@ Modern TypeScript tabanlı Türk kimlik numaraları ve diğer numerik değerler 
 - ✅ **Kredi Kartı** - Doğrulama, üretme ve tamamlama (Visa, Mastercard, American Express, Discover, JCB, Diners Club)
 - ✅ **IMEI** - Doğrulama, üretme ve tamamlama
 - ✅ **ISBN** - Doğrulama, üretme ve tamamlama (ISBN-10 ve ISBN-13 desteği)
-- 🔄 **EAN/UPC** - Yakında...
+- ✅ **EAN/UPC** - Doğrulama, üretme ve tamamlama (EAN-13, EAN-8, UPC-A desteği)
 
 ## Kurulum
 

@@ -6,6 +6,7 @@ import { IbanService } from '../services/iban/IbanService';
 import { CreditCardService } from '../services/creditcard/CreditCardService';
 import { ImeiService } from '../services/imei/ImeiService';
 import { IsbnService } from '../services/isbn/IsbnService';
+import { EanService } from '../services/ean/EanService';
 
 /**
  * Factory class for creating number validation services
@@ -74,7 +75,7 @@ export class ServiceFactory {
       case ServiceType.ISBN:
         return new IsbnService();
       case ServiceType.EAN:
-        throw new Error(`${type} servisi henüz implement edilmemiş`);
+        return new EanService();
       default:
         throw new Error(`Desteklenmeyen servis tipi: ${type}`);
     }
@@ -120,6 +121,9 @@ export class ServiceFactory {
 
     // Check length-based matches first
     switch (cleanInput.length) {
+      case 8:
+        possibleServices.push(ServiceType.EAN); // EAN-8
+        break;
       case 10:
         if (!possibleServices.includes(ServiceType.VKN)) {
           possibleServices.push(ServiceType.VKN);
@@ -127,6 +131,12 @@ export class ServiceFactory {
         break;
       case 11:
         possibleServices.push(ServiceType.TCKN);
+        break;
+      case 12:
+        possibleServices.push(ServiceType.EAN); // UPC-A
+        break;
+      case 13:
+        possibleServices.push(ServiceType.EAN); // EAN-13
         break;
       case 15:
         possibleServices.push(ServiceType.IMEI);

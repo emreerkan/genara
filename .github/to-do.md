@@ -37,7 +37,7 @@
 - [x] Implement Credit Card service (validation, generation with Luhn algorithm)
 - [x] Implement IMEI service
 - [x] Implement ISBN service (ISBN-10 and ISBN-13)
-- [ ] Implement EAN/UPC barcode service
+- [x] Implement EAN/UPC barcode service
 
 ## Phase 4: Testing & Documentation
 - [ ] Write unit tests for all services
